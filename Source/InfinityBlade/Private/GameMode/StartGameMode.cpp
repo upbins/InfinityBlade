@@ -1,14 +1,14 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "GameMode/StartGameMode.h"
 
-//ÓÎÏ·¿ªÊ¼µ÷ÓÃµÄ·½Ê½
+//æ¸¸æˆå¼€å§‹è°ƒç”¨çš„æ–¹å¼
 void AStartGameMode::BeginPlay()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, TEXT("Hello GameMode"));
-	//³õÊ¼»¯ÓÎÏ·¿ªÊ¼½çÃæ
+	//åˆå§‹åŒ–æ¸¸æˆå¼€å§‹ç•Œé¢
 	m_StartUserWidget = CreateWidget<UStartUserWidget>(GetGameInstance(), LoadClass<UStartUserWidget>(this, TEXT("WidgetBlueprint'/Game/BluePrint/BP_StartUseWidget.BP_StartUseWidget_C'")));
-	//Ìí¼Óµ½ÊÓÍ¼ÖĞ
+	//æ·»åŠ åˆ°è§†å›¾ä¸­
 	m_StartUserWidget->AddToViewport();
 }

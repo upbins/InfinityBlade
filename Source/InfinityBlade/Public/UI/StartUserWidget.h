@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -6,10 +6,12 @@
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
 #include "Runtime/Engine/Classes/Kismet/KismetSystemLibrary.h"
+#include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
+#include "CustomGameInstance.h"
 #include "StartUserWidget.generated.h"
 
 /**
- * ÓÎÏ·¿ªÊ¼½çÃæ
+ * æ¸¸æˆå¼€å§‹ç•Œé¢
  */
 UCLASS()
 class INFINITYBLADE_API UStartUserWidget : public UUserWidget
@@ -17,18 +19,21 @@ class INFINITYBLADE_API UStartUserWidget : public UUserWidget
 	GENERATED_BODY()
 public:
 	UPROPERTY()
-		//¿ªÊ¼°´Å¥
+		//å¼€å§‹æŒ‰é’®
 		UButton* m_StartGameButton;
 	UPROPERTY()
-		//×¢²á°´Å¥
+		//æ³¨å†ŒæŒ‰é’®
 		UButton* m_RegisterGameBtn;
 	UPROPERTY()
-		//ÍË³ö°´Å¥
+		//é€€å‡ºæŒ‰é’®
 		UButton* m_ExitGameBtn;
 private:
-	//¿Ø¼ş´´½¨Íê³Éºó³õÊ¼»¯·½·¨
+	//æ§ä»¶åˆ›å»ºå®Œæˆååˆå§‹åŒ–æ–¹æ³•
 	virtual bool Initialize() override;
 	UFUNCTION()
-	//ÍË³ö°´Å¥ÏìÓ¦Ê±¼ä
+	//é€€å‡ºæŒ‰é’®å“åº”äº‹ä»¶
 	void ExitGameBtnClickEvent();
+	UFUNCTION()
+	//è¿›å…¥æ¸¸æˆæŒ‰é’®äº‹ä»¶
+	void StartGameBtnClickEvent();
 };

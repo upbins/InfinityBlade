@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -8,7 +8,7 @@
 #include "StartGameMode.generated.h"
 
 /**
- * ÓÎÏ·¿ªÊ¼µÄÓÎÏ·Ä£Ê½Àà
+ * æ¸¸æˆå¼€å§‹çš„æ¸¸æˆæ¨¡å¼ç±»
  */
 UCLASS()
 class INFINITYBLADE_API AStartGameMode : public AGameMode
@@ -20,6 +20,6 @@ public:
 	UStartUserWidget *m_StartUserWidget;
 public:
 
-	//ÓÎÏ·¿ªÊ¼µ÷ÓÃµÄ·½Ê½
+	//æ¸¸æˆå¼€å§‹è°ƒç”¨çš„æ–¹å¼
 	virtual void BeginPlay() override;
 };
