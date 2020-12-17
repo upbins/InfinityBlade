@@ -22,4 +22,5 @@ public:
 
 	//游戏开始调用的方式
 	virtual void BeginPlay() override;
+	virtual void Destroyed() override;
 };

@@ -28,11 +28,11 @@ void UStartUserWidget::ExitGameBtnClickEvent()
 void UStartUserWidget::StartGameBtnClickEvent()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, TEXT("StartGameBtnClickEvent"));
-	//FString Id = "1";
+	FString Id = "1";
 	//获取自定义的GameInstance
-	//UCustomGameInstance* GameInstance = Cast<UCustomGameInstance>(GetWorld()->GetGameInstance());
+	UCustomGameInstance* GameInstance = Cast<UCustomGameInstance>(GetWorld()->GetGameInstance());
 	//保存id到GameInstance
-	//GameInstance->ContenxtMap.Add("id", Id);
+	GameInstance->ContenxtMap.Add("id", Id);
 	//关卡切换
 	UGameplayStatics::OpenLevel(GetWorld(), TEXT("/Game/Map/MainGame_Map"));
 }

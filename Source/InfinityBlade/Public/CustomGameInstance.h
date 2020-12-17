@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
+#include "UI/LoadingUserWidget.h"
 #include "CustomGameInstance.generated.h"
 
 /**
@@ -16,6 +17,8 @@ class INFINITYBLADE_API UCustomGameInstance : public UGameInstance
 public:
 	//存储数据的集合
 	TMap<FString, FString> ContenxtMap;
+	UPROPERTY()
+		ULoadingUserWidget* m_LoadUserWidget;
 public:
 	/** 初始化方法 */
 	virtual void Init() override;
@@ -28,4 +31,6 @@ public:
 	/** 是否加载完成 */
 	UFUNCTION(BlueprintCallable, Category = LoadFunction)
 		bool GetLoadStatus();
+	UFUNCTION(BlueprintCallable, Category = LoadFunction)
+		void FinishLoadMap();
 };
