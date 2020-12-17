@@ -8,14 +8,9 @@ void AStartGameMode::BeginPlay()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, TEXT("BeginPlay"));
 	//初始化游戏开始界面
-	m_StartUserWidget = CreateWidget<UStartUserWidget>(GetGameInstance(), LoadClass<UStartUserWidget>(this, TEXT("WidgetBlueprint'/Game/BluePrint/BP_StartUserWidget.BP_StartUserWidget_C'")));
+	m_StartUserWidget = CreateWidget<UStartUserWidget>(GetGameInstance(), LoadClass<UStartUserWidget>(this, TEXT("WidgetBlueprint'/Game/BluePrint/UI/BP_StartUserWidget.BP_StartUserWidget_C'")));
 	//添加到视图中
 	m_StartUserWidget->AddToViewport();
 }
 
-void AStartGameMode::Destroyed()
-{
-	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, TEXT("Destroyed"));
-	//m_StartUserWidget->RemoveFromParent();
-}
 

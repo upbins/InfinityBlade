@@ -14,7 +14,7 @@ void UCustomGameInstance::Init()
 	//结束加载地图的委托
 	FCoreUObjectDelegates::PostLoadMapWithWorld.AddUObject(this, &UCustomGameInstance::PostLoadMap);
 	//加载Loading-UI
-	m_LoadUserWidget = CreateWidget<ULoadingUserWidget>(this, LoadClass<ULoadingUserWidget>(this, TEXT("WidgetBlueprint'/Game/BluePrint/BP_LoadUserWidget.BP_LoadUserWidget_C'")));
+	m_LoadUserWidget = CreateWidget<ULoadingUserWidget>(this, LoadClass<ULoadingUserWidget>(this, TEXT("WidgetBlueprint'/Game/BluePrint/UI/BP_LoadUserWidget.BP_LoadUserWidget_C'")));
 }
 /** 地图加载开始的方法 */
 void UCustomGameInstance::PreLoadMap(const FString& Map)
