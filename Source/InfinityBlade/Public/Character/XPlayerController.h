@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "Character/XCharacter.h"
+#include "UI/MainUserWidget.h"
 #include "XPlayerController.generated.h"
 
 /**
@@ -17,6 +18,8 @@ class INFINITYBLADE_API AXPlayerController : public APlayerController
 public:
 	UPROPERTY()
 		AXCharacter* XCharacter;
+	UPROPERTY()
+		UMainUserWidget* MainUserWidget;
 public:
 	//重写绑定输入控件的方式
 	virtual void SetupInputComponent() override;

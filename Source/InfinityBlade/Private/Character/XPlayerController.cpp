@@ -9,13 +9,16 @@ void AXPlayerController::BeginPlay()
 	bShowMouseCursor = true;
 	//初始化英雄
 	XCharacter = Cast<AXCharacter>(GetPawn());
+	//游戏界面的初始化
+	MainUserWidget = CreateWidget<UMainUserWidget>(GetGameInstance(), LoadClass<UMainUserWidget>(nullptr,TEXT("WidgetBlueprint'/Game/BluePrint/UI/BP_MainUserWidget.BP_MainUserWidget_C'")));
+	MainUserWidget->AddToViewport();
 }
 
-//绑定输入控件
+////绑定输入控件
 void AXPlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
-	//绑定输入
+	////绑定输入
 	InputComponent->BindAxis("MoveForward", this, &AXPlayerController::MoveForward);
 	InputComponent->BindAxis("MoveRight", this, &AXPlayerController::MoveRight);
 }
@@ -38,11 +41,11 @@ void AXPlayerController::MoveForward(float Speed)
 void AXPlayerController::MoveRight(float Speed)
 {
 	////获取控制器的角度
-	//FRotator _Rotation = GetControlRotation();
-	////创建偏航角
-	//FRotator YawRotation(0.f, _Rotation.Yaw, 0.f);
-	////获取移动方向
-	//FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-	////在该方向增加位移
-	//XCharacter->AddMovementInput(Direction, Speed);
+	FRotator _Rotation = XCharacter->GetControlRotation();
+	//创建偏航角
+	FRotator YawRotation(0.f, _Rotation.Yaw, 0.f);
+	//获取移动方向
+	FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+	//在该方向增加位移
+	XCharacter->AddMovementInput(Direction, Speed);
 }

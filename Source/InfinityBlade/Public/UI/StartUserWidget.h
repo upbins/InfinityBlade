@@ -22,9 +22,6 @@ public:
 		//开始按钮
 		UButton* m_StartGameButton;
 	UPROPERTY()
-		//注册按钮
-		UButton* m_RegisterGameBtn;
-	UPROPERTY()
 		//退出按钮
 		UButton* m_ExitGameBtn;
 private:

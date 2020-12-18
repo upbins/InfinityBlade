@@ -10,8 +10,6 @@ bool UStartUserWidget::Initialize()
 	//初始化开始按钮
 	m_StartGameButton = Cast<UButton>(GetWidgetFromName(TEXT("StartGameBtn")));
 	m_StartGameButton->OnClicked.AddDynamic(this, &UStartUserWidget::StartGameBtnClickEvent);
-	//初始化注册按钮
-	m_RegisterGameBtn = Cast<UButton>(GetWidgetFromName(TEXT("RegisterGameBtn")));
 	//初始化退出按钮
 	m_ExitGameBtn = Cast<UButton>(GetWidgetFromName(TEXT("ExitGameBtn")));
 	//退出按钮回调
