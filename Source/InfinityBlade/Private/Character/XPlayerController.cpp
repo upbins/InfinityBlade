@@ -6,12 +6,23 @@
 //游戏开始调用方法
 void AXPlayerController::BeginPlay()
 {
+	//设置显示鼠标
 	bShowMouseCursor = true;
 	//初始化英雄
 	XCharacter = Cast<AXCharacter>(GetPawn());
 	//游戏界面的初始化
 	MainUserWidget = CreateWidget<UMainUserWidget>(GetGameInstance(), LoadClass<UMainUserWidget>(nullptr,TEXT("WidgetBlueprint'/Game/BluePrint/UI/BP_MainUserWidget.BP_MainUserWidget_C'")));
 	MainUserWidget->AddToViewport();
+	if (XCharacter->XWeaponClass)
+	{
+		//生成武器对象
+		Weapon = GetWorld()->SpawnActor<AWeapon>(XCharacter->XWeaponClass);
+		//绑定规则
+		FAttachmentTransformRules AttachmentRules(EAttachmentRule::SnapToTarget, EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative, true);
+		//绑定武器
+		Weapon->AttachToComponent(XCharacter->GetMesh(), AttachmentRules, TEXT("hand_rSocket"));
+	}
+	
 }
 
 ////绑定输入控件

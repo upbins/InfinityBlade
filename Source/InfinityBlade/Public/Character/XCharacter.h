@@ -8,6 +8,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Camera/CameraComponent.h"
+#include "Weapon/Weapon.h"
 #include "XCharacter.generated.h"
 
 UCLASS()
@@ -21,6 +22,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	//跟随相机  
 	UCameraComponent* FollowCamera;
+	//武器类
+	UPROPERTY(EditAnywhere, Category = "Weapon")
+		TSubclassOf<AWeapon> XWeaponClass;
 public:
 	// Sets default values for this character's properties
 	//构造函数

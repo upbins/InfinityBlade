@@ -12,16 +12,16 @@ AXCharacter::AXCharacter()
 	bUseControllerRotationRoll = false;
 	bUseControllerRotationYaw = false;
 	//设置胶囊碰撞体的大小  
-	GetCapsuleComponent()->InitCapsuleSize(45.f, 96.f);
+	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.f);
 	//设置控制器在移动时可以旋转  
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	//创建一个摄像机目标点 USpringArmComponent 设置父级 长度 可旋转  
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>("CameraBoom"); //CreateDefaultSubobject(TEXT("CameraBoom"),false);
-	CameraBoom->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepWorldTransform);
+	CameraBoom->SetupAttachment(RootComponent);
 	CameraBoom->bUsePawnControlRotation = true;
 	//创建一个摄像机 绑定到CameraBoom下，不受控制旋转的影响 受CameraBoom旋转影响  
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>("CameraComponent");
-	FollowCamera->AttachToComponent(CameraBoom, FAttachmentTransformRules::KeepWorldTransform,USpringArmComponent::SocketName);
+	FollowCamera->SetupAttachment(CameraBoom,USpringArmComponent::SocketName);
 	FollowCamera->bUsePawnControlRotation = false;
 }
 
@@ -32,6 +32,6 @@ void AXCharacter::BeginPlay()
 	if (RootComponent) {
 		//设置初始位置  
 		RootComponent->SetWorldLocation(FVector(0, 0, 0));
-	}
+	};
 }
 

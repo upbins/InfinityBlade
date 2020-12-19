@@ -20,6 +20,8 @@ public:
 		AXCharacter* XCharacter;
 	UPROPERTY()
 		UMainUserWidget* MainUserWidget;
+	UPROPERTY()
+		AWeapon *Weapon;
 public:
 	//重写绑定输入控件的方式
 	virtual void SetupInputComponent() override;
