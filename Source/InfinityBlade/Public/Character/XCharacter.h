@@ -8,6 +8,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Camera/CameraComponent.h"
+#include "Animation/AnimMontage.h"
 #include "Weapon/Weapon.h"
 #include "XCharacter.generated.h"
 
@@ -25,6 +26,9 @@ public:
 	//武器类
 	UPROPERTY(EditAnywhere, Category = "Weapon")
 		TSubclassOf<AWeapon> XWeaponClass;
+	//连击动画蒙太奇
+	UPROPERTY(EditAnywhere, Category = "Montage")
+		UAnimMontage* SerialAttackMontage;
 public:
 	// Sets default values for this character's properties
 	//构造函数

@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "Character/XCharacter.h"
+#include "Character/XAnimInstance.h"
 #include "UI/MainUserWidget.h"
 #include "XPlayerController.generated.h"
 
@@ -19,6 +20,8 @@ public:
 	UPROPERTY()
 		AXCharacter* XCharacter;
 	UPROPERTY()
+		UXAnimInstance* XAnimInstance;
+	UPROPERTY()
 		UMainUserWidget* MainUserWidget;
 	UPROPERTY()
 		AWeapon *Weapon;
@@ -28,10 +31,18 @@ public:
 	//重写游戏开始调用方法
 	virtual void BeginPlay() override;
 public:
+
+public:
 	//前后移动
 	UFUNCTION()
 		void MoveForward(float Speed);
 	//左右移动
 	UFUNCTION()
 		void MoveRight(float Speed);
+	//初始化按钮事件的方法
+	UFUNCTION()
+		void InitBtnWidgetEvent();
+	//攻击事件
+	UFUNCTION()
+		void NormalAttackBtnEevent();
 };
