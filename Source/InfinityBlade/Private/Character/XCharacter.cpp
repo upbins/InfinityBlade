@@ -29,9 +29,5 @@ AXCharacter::AXCharacter()
 void AXCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	if (RootComponent) {
-		//设置初始位置  
-		RootComponent->SetWorldLocation(FVector(0, 0, 0));
-	};
 }
 

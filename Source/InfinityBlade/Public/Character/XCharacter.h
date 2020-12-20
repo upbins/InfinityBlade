@@ -26,6 +26,15 @@ public:
 	//武器类
 	UPROPERTY(EditAnywhere, Category = "Weapon")
 		TSubclassOf<AWeapon> XWeaponClass;
+	//总血量
+	UPROPERTY(EditAnywhere, Category = "PlayerState")
+		float TotalHP;
+	//MP
+	UPROPERTY(EditAnywhere, Category = "PlayerState")
+		float TotalMP;
+	//伤害值
+	UPROPERTY(EditAnywhere, Category = "PlayerState")
+		float AttackDamage;
 	//连击动画蒙太奇
 	UPROPERTY(EditAnywhere, Category = "Montage")
 		UAnimMontage* SerialAttackMontage;

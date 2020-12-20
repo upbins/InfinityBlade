@@ -1,6 +1,23 @@
 
 
 #include "Character/XAnimInstance.h"
+#include "Character/XPlayerController.h"
+#include "Character/XCharacter.h"
+
+
+void UXAnimInstance::InitState()
+{
+	if (XPlayerState == nullptr) {
+		//获取contrller
+		AXPlayerController* XPlayerContrroller = Cast<AXPlayerController>(TryGetPawnOwner()->GetController());
+		//获取状态
+		XPlayerState = XPlayerContrroller->XPlayerState;
+		if (IntCurAttackIndex == 0) //第一段开始的时候记录下初始攻击
+		{
+			BaseAttack = XPlayerState->GetAttackDamage();
+		}
+	}
+}
 
 void UXAnimInstance::UpdateSpeed()
 {
@@ -11,14 +28,18 @@ void UXAnimInstance::UpdateSpeed()
 
 void UXAnimInstance::AnimNotify_PlayStart(UAnimNotify* Notity)
 {
-	//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, "AnimNotify_PlayStart");
+
 	bIsPlayingAnimation = true;
 	bIsCanChangeAttack = false;
+	IntCurAttackIndex = IntCurAttackIndex + 1;
+	if (XPlayerState != nullptr) {
+		XPlayerState->SetAttackDamage(BaseAttack + BaseAttack * IntCurAttackIndex);
+	}
+	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, FString::FromInt(XPlayerState->GetAttackDamage()));
 }
 
 void UXAnimInstance::AnimNotify_PlayEnd(UAnimNotify * Notity)
 {
-	//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, "AnimNotify_PlayEnd");
 	bIsPlayingAnimation = false;
 }
 
@@ -26,42 +47,15 @@ void UXAnimInstance::AnimNotify_IsCanChangeAttack(UAnimNotify* Notity)
 {
 	bIsCanChangeAttack = true;
 }
-
-void UXAnimInstance::AnimNotify_SecondAttackInput(UAnimNotify * Notity)
-{
-	//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, "AnimNotify_SecondAttackInput");
-	bIsEnableSecondAttack = true;
-}
-
-void UXAnimInstance::AnimNotify_ThreeAttackInput(UAnimNotify * Notity)
-{
-	//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, "AnimNotify_ThreeAttackInput");
-	bIsEnableThreeAttack = true;
-}
-
-void UXAnimInstance::AnimNotify_FourAttackInput(UAnimNotify * Notity)
-{
-	//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, "AnimNotify_FourAttackInput");
-	bIsEnableFourAttack = true;
-}
-
-void UXAnimInstance::AnimNotify_FiveAttackInput(UAnimNotify * Notity)
-{
-	//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, "AnimNotify_FiveAttackInput");
-	bIsEnableFiveAttack = true;
-}
-
 void UXAnimInstance::AnimNotify_ResetSerialAttack(UAnimNotify * Notity)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red,"AnimNotify_ResetSerialAttack");
-	//是否进入第二段连击
-	bIsEnableSecondAttack = false;
-	//是否进入第三段连击
-	bIsEnableThreeAttack = false;
-	//是否进入第四段连击
-	bIsEnableFourAttack = false;
-	//是否进入第五段连击
-	bIsEnableFiveAttack = false;
 	//是否可切换连击
 	bIsCanChangeAttack = false;
+	IntCurAttackIndex = 0;
+	InitState();
+	if (XPlayerState != nullptr) {
+		XPlayerState->SetAttackDamage(BaseAttack);
+	}
 }
+
+

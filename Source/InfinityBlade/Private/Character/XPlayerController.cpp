@@ -8,10 +8,16 @@ void AXPlayerController::BeginPlay()
 {
 	//设置显示鼠标
 	bShowMouseCursor = true;
+	
 	//初始化英雄
 	XCharacter = Cast<AXCharacter>(GetPawn());
 	//初始化动画实例
 	XAnimInstance = Cast<UXAnimInstance>(XCharacter->GetMesh()->GetAnimInstance());
+	//初始化玩家状态
+	XPlayerState = Cast<AXPlayerState>(this->PlayerState);
+	//初始化玩家状态
+	InitState();
+
 	//游戏界面的初始化
 	MainUserWidget = CreateWidget<UMainUserWidget>(GetGameInstance(), LoadClass<UMainUserWidget>(nullptr,TEXT("WidgetBlueprint'/Game/BluePrint/UI/BP_MainUserWidget.BP_MainUserWidget_C'")));
 	MainUserWidget->AddToViewport();
@@ -26,6 +32,7 @@ void AXPlayerController::BeginPlay()
 	}
 	//初始化按钮点击事件
 	InitBtnWidgetEvent();
+	UpdateUI();
 }
 
 ////绑定输入控件
@@ -84,29 +91,52 @@ void AXPlayerController::NormalAttackBtnEevent()
 	UAnimMontage * SerialAttackMontage = XCharacter->SerialAttackMontage;
 	//获取当前播放的节
 	FName CurrentSection = XAnimInstance->Montage_GetCurrentSection(SerialAttackMontage);
-	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, CurrentSection.ToString());
+	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red,CurrentSection.ToString());
 	if (CurrentSection.IsNone()) {
 		//默认播放第一个节
 		XAnimInstance->Montage_Play(SerialAttackMontage);
 	}
-	else if (CurrentSection.IsEqual(FName("FirstAttack")) && XAnimInstance->bIsEnableSecondAttack)
-	{
-		//播放第二节
-		XAnimInstance->Montage_JumpToSection(FName("SecondAttack"), SerialAttackMontage);
+	else {
+		if (XAnimInstance->bIsCanChangeAttack) {
+			if (CurrentSection.IsEqual(FName("FirstAttack")))
+			{
+				//播放第二节
+				XAnimInstance->Montage_JumpToSection(FName("SecondAttack"), SerialAttackMontage);
+			}
+			else if (CurrentSection.IsEqual(FName("SecondAttack")))
+			{
+				//播放第三节
+				XAnimInstance->Montage_JumpToSection(FName("ThreeAttack"), SerialAttackMontage);
+			}
+			else if (CurrentSection.IsEqual(FName("ThreeAttack")))
+			{
+				//播放第四节
+				XAnimInstance->Montage_JumpToSection(FName("FourAttack"), SerialAttackMontage);
+			}
+			else if (CurrentSection.IsEqual(FName("FourAttack")))
+			{
+				//播放第五节
+				XAnimInstance->Montage_JumpToSection(FName("FiveAttack"), SerialAttackMontage);
+			}
+		}
 	}
-	else if (CurrentSection.IsEqual(FName("SecondAttack")) && XAnimInstance->bIsEnableThreeAttack)
-	{
-		//播放第三节
-		XAnimInstance->Montage_JumpToSection(FName("ThreeAttack"), SerialAttackMontage);
+
+	
+}
+
+void AXPlayerController::InitState()
+{
+	XPlayerState->SetCurrentHP(XCharacter->TotalHP);
+	XPlayerState->SetCurrentMP(XCharacter->TotalMP);
+	XPlayerState->SetAttackDamage(XCharacter->AttackDamage);
+}
+
+void AXPlayerController::UpdateUI()
+{
+	if (MainUserWidget->m_ProgressBar_HP) {
+		MainUserWidget->m_ProgressBar_HP->SetPercent(1.0 - (XPlayerState->GetCurrentHP() / XCharacter->TotalHP));
 	}
-	else if (CurrentSection.IsEqual(FName("ThreeAttack")) && XAnimInstance->bIsEnableFourAttack)
-	{
-		//播放第四节
-		XAnimInstance->Montage_JumpToSection(FName("FourAttack"),SerialAttackMontage);
-	}
-	else if (CurrentSection.IsEqual(FName("FourAttack")) && XAnimInstance->bIsEnableFiveAttack)
-	{
-		//播放第五节
-		XAnimInstance->Montage_JumpToSection(FName("FiveAttack"),SerialAttackMontage);
+	if (MainUserWidget->m_ProgressBar_MP) {
+		MainUserWidget->m_ProgressBar_MP->SetPercent(1.0 - (XPlayerState->GetCurrentMP() / XCharacter->TotalMP));
 	}
 }

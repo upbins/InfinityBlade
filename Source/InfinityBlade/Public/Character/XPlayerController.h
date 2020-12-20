@@ -6,6 +6,7 @@
 #include "GameFramework/PlayerController.h"
 #include "Character/XCharacter.h"
 #include "Character/XAnimInstance.h"
+#include "Character/XPlayerState.h"
 #include "UI/MainUserWidget.h"
 #include "XPlayerController.generated.h"
 
@@ -20,6 +21,8 @@ public:
 	UPROPERTY()
 		AXCharacter* XCharacter;
 	UPROPERTY()
+		AXPlayerState* XPlayerState;
+	UPROPERTY()
 		UXAnimInstance* XAnimInstance;
 	UPROPERTY()
 		UMainUserWidget* MainUserWidget;
@@ -30,8 +33,8 @@ public:
 	virtual void SetupInputComponent() override;
 	//重写游戏开始调用方法
 	virtual void BeginPlay() override;
-public:
-
+	////重写绑定Character的方法
+	//virtual void Possess(APawn* InPawn) override;
 public:
 	//前后移动
 	UFUNCTION()
@@ -45,4 +48,8 @@ public:
 	//攻击事件
 	UFUNCTION()
 		void NormalAttackBtnEevent();
+	UFUNCTION()
+		void InitState();
+	UFUNCTION()
+		void UpdateUI();
 };

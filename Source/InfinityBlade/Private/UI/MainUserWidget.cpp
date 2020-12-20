@@ -10,5 +10,12 @@ bool UMainUserWidget::Initialize()
 	}
 	//初始化开始按钮
 	m_NormalAttackButton = Cast<UButton>(GetWidgetFromName(TEXT("NormalAttackButton")));
+	m_SkillButton_1 = Cast<UButton>(GetWidgetFromName(TEXT("SkillButton_1")));
+	m_SkillButton_2 = Cast<UButton>(GetWidgetFromName(TEXT("SkillButton_2")));
+	m_SkillButton_3 = Cast<UButton>(GetWidgetFromName(TEXT("SkillButton_3")));
+	m_SkillButton_4 = Cast<UButton>(GetWidgetFromName(TEXT("SkillButton_4")));
+	m_ProgressBar_MP = Cast<UProgressBar>(GetWidgetFromName(TEXT("ProgressBar_MP")));
+	m_ProgressBar_Engery = Cast<UProgressBar>(GetWidgetFromName(TEXT("ProgressBar_Engery")));
+	m_ProgressBar_HP = Cast<UProgressBar>(GetWidgetFromName(TEXT("ProgressBar_HP")));
 	return true;
 }
