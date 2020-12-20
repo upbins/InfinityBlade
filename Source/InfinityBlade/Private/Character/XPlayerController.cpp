@@ -2,7 +2,9 @@
 
 
 #include "Character/XPlayerController.h"
-
+#include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
+#include "Runtime/Engine/Classes/Kismet/KismetMathLibrary.h"
+#include "AI/AICharacter.h"
 //游戏开始调用方法
 void AXPlayerController::BeginPlay()
 {
@@ -29,6 +31,8 @@ void AXPlayerController::BeginPlay()
 		FAttachmentTransformRules AttachmentRules(EAttachmentRule::SnapToTarget, EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative, true);
 		//绑定武器
 		Weapon->AttachToComponent(XCharacter->GetMesh(), AttachmentRules, TEXT("hand_rSocket"));
+		//绑定武器重叠事件
+		Weapon->CapsuleComponent->OnComponentBeginOverlap.AddDynamic(this, &AXPlayerController::WeaponOverlapDamage);
 	}
 	//初始化按钮点击事件
 	InitBtnWidgetEvent();
@@ -91,37 +95,33 @@ void AXPlayerController::NormalAttackBtnEevent()
 	UAnimMontage * SerialAttackMontage = XCharacter->SerialAttackMontage;
 	//获取当前播放的节
 	FName CurrentSection = XAnimInstance->Montage_GetCurrentSection(SerialAttackMontage);
-	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red,CurrentSection.ToString());
+	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red,CurrentSection.ToString() + FString::SanitizeFloat(XAnimInstance->bIsCanChangeAttack));
 	if (CurrentSection.IsNone()) {
 		//默认播放第一个节
 		XAnimInstance->Montage_Play(SerialAttackMontage);
 	}
-	else {
-		if (XAnimInstance->bIsCanChangeAttack) {
-			if (CurrentSection.IsEqual(FName("FirstAttack")))
-			{
-				//播放第二节
-				XAnimInstance->Montage_JumpToSection(FName("SecondAttack"), SerialAttackMontage);
-			}
-			else if (CurrentSection.IsEqual(FName("SecondAttack")))
-			{
-				//播放第三节
-				XAnimInstance->Montage_JumpToSection(FName("ThreeAttack"), SerialAttackMontage);
-			}
-			else if (CurrentSection.IsEqual(FName("ThreeAttack")))
-			{
-				//播放第四节
-				XAnimInstance->Montage_JumpToSection(FName("FourAttack"), SerialAttackMontage);
-			}
-			else if (CurrentSection.IsEqual(FName("FourAttack")))
-			{
-				//播放第五节
-				XAnimInstance->Montage_JumpToSection(FName("FiveAttack"), SerialAttackMontage);
-			}
+	if (XAnimInstance->bIsCanChangeAttack) {
+		if (CurrentSection.IsEqual(FName("FirstAttack")))
+		{
+			//播放第二节
+			XAnimInstance->Montage_JumpToSection(FName("SecondAttack"), SerialAttackMontage);
+		}
+		else if (CurrentSection.IsEqual(FName("SecondAttack")))
+		{
+			//播放第三节
+			XAnimInstance->Montage_JumpToSection(FName("ThreeAttack"), SerialAttackMontage);
+		}
+		else if (CurrentSection.IsEqual(FName("ThreeAttack")))
+		{
+			//播放第四节
+			XAnimInstance->Montage_JumpToSection(FName("FourAttack"), SerialAttackMontage);
+		}
+		else if (CurrentSection.IsEqual(FName("FourAttack")))
+		{
+			//播放第五节
+			XAnimInstance->Montage_JumpToSection(FName("FiveAttack"), SerialAttackMontage);
 		}
 	}
-
-	
 }
 
 void AXPlayerController::InitState()
@@ -138,5 +138,61 @@ void AXPlayerController::UpdateUI()
 	}
 	if (MainUserWidget->m_ProgressBar_MP) {
 		MainUserWidget->m_ProgressBar_MP->SetPercent(1.0 - (XPlayerState->GetCurrentMP() / XCharacter->TotalMP));
+	}
+}
+
+void AXPlayerController::WeaponOverlapDamage(UPrimitiveComponent* OverlapedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 BodyIndex, bool FromSweep, const FHitResult& HitResult)
+{
+	//是否处于攻击状态
+	if (XAnimInstance->bIsAttacking)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red, "Overlap...");
+		UGameplayStatics::ApplyDamage(OtherActor, XPlayerState->GetAttackDamage(), this, XCharacter, nullptr);
+	}
+}
+
+/** 锁定敌人方法 */
+void AXPlayerController::LockAI()
+{
+	/** 获取自己的位置 */
+	FVector Location = XCharacter->GetActorLocation();
+	/** 获取所有的敌人列表 */
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AAICharacter::StaticClass(), AiArray);
+	/** 判断敌人数量 */
+	int AiNum = AiArray.Num();
+	if (AiNum > 0)
+	{
+		/** 获取默认最近距离 */
+		float MinDistance = FVector::Dist(Location, AiArray[0]->GetActorLocation());
+		/** 距离玩家最近的AI */
+		AActor* MinActor = AiArray[0];
+		/** 遍历所有敌人 */
+		for (int i = 0; i < AiNum; i++)
+		{
+			/** 判断敌人是否已经死亡 */
+			if (Cast<AAICharacter>(AiArray[i])->bIsDead)
+			{
+				continue;
+			}
+			/** 获取距离 */
+			float TmpDistance = FVector::Dist(Location, AiArray[i]->GetActorLocation());
+			/** 判断最近距离 */
+			if (MinDistance >= TmpDistance)
+			{
+				MinDistance = TmpDistance;
+				MinActor = AiArray[i];
+			}
+		}
+		/** 判断距离是否距离玩家足够的近 */
+		if (MinDistance <= 400)
+		{
+			/** 设置Rotation只左右旋转 */
+			FRotator Rotation = UKismetMathLibrary::FindLookAtRotation(Location, MinActor->GetActorLocation());
+			/** 修改Rotation */
+			Rotation.Pitch = XCharacter->GetCapsuleComponent()->GetComponentRotation().Pitch;
+			Rotation.Roll = XCharacter->GetCapsuleComponent()->GetComponentRotation().Roll;
+			/** 设置玩家胶囊体朝向 */
+			XCharacter->GetCapsuleComponent()->SetRelativeRotation(Rotation);
+		}
 	}
 }

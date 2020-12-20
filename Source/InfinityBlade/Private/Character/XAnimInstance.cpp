@@ -43,6 +43,16 @@ void UXAnimInstance::AnimNotify_PlayEnd(UAnimNotify * Notity)
 	bIsPlayingAnimation = false;
 }
 
+void UXAnimInstance::AnimNotify_AttackStart(UAnimNotify* Notify)
+{
+	bIsAttacking = true;
+}
+
+void UXAnimInstance::AnimNotify_AttackEnd(UAnimNotify* Notify)
+{
+	bIsAttacking = false;
+}
+
 void UXAnimInstance::AnimNotify_IsCanChangeAttack(UAnimNotify* Notity)
 {
 	bIsCanChangeAttack = true;
@@ -57,5 +67,3 @@ void UXAnimInstance::AnimNotify_ResetSerialAttack(UAnimNotify * Notity)
 		XPlayerState->SetAttackDamage(BaseAttack);
 	}
 }
-
-

@@ -28,13 +28,13 @@ public:
 		UMainUserWidget* MainUserWidget;
 	UPROPERTY()
 		AWeapon *Weapon;
+	UPROPERTY()
+		TArray<AActor*> AiArray;
 public:
 	//重写绑定输入控件的方式
 	virtual void SetupInputComponent() override;
 	//重写游戏开始调用方法
 	virtual void BeginPlay() override;
-	////重写绑定Character的方法
-	//virtual void Possess(APawn* InPawn) override;
 public:
 	//前后移动
 	UFUNCTION()
@@ -52,4 +52,8 @@ public:
 		void InitState();
 	UFUNCTION()
 		void UpdateUI();
+	//武器伤害方法
+	UFUNCTION()
+		void WeaponOverlapDamage(UPrimitiveComponent* OverlapedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 BodyIndex, bool FromSweep, const FHitResult& HitResult);
+	void LockAI();
 };
