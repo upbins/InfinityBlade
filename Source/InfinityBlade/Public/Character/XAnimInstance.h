@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -8,59 +8,65 @@
 #include "XAnimInstance.generated.h"
 
 /**
- * Ó¢ĞÛ½ÇÉ«µÄ¶¯»­ÊµÀı
+ * è‹±é›„è§’è‰²çš„åŠ¨ç”»å®ä¾‹
  */
 UCLASS()
 class INFINITYBLADE_API UXAnimInstance : public UAnimInstance
 {
 	GENERATED_BODY()
 public:
-	//ÈËÎïÒÆ¶¯ËÙ¶È
+	//äººç‰©ç§»åŠ¨é€Ÿåº¦
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		float Speed;
 	UPROPERTY()
 		AXPlayerState *XPlayerState;
-	//ÊÇ·ñ´¦ÓÚ²¥·Å¶¯×÷×´Ì¬
+	//æ˜¯å¦å¤„äºæ’­æ”¾åŠ¨ä½œçŠ¶æ€
 	bool bIsPlayingAnimation;
-	//ÊÇ·ñ¿ÉÇĞ»»¶¯×÷
+	//æ˜¯å¦å¯åˆ‡æ¢åŠ¨ä½œ
 	bool bIsCanChangeAttack;
-	//ÊÇ·ñ´¦ÓÚ¹¥»÷ÖĞ
+	//æ˜¯å¦å¤„äºæ”»å‡»ä¸­
 	bool bIsAttacking;
-	//µ±Ç°µÚ¼¸¶Î¹¥»÷
+	//å½“å‰ç¬¬å‡ æ®µæ”»å‡»
 	int IntCurAttackIndex = 0;
-	//»ù±¾¹¥»÷
+	//åŸºæœ¬æ”»å‡»
 	float BaseAttack;
-	/** ÊÇ·ñ½øÈëµÚ¶ş´ÎÁ¬»÷ */
+	/** æ˜¯å¦è¿›å…¥ç¬¬äºŒæ¬¡è¿å‡» */
 	bool bIsEnableSecondAttack;
-	/** ÊÇ·ñ½øÈëµÚÈı´ÎÁ¬»÷ */
+	/** æ˜¯å¦è¿›å…¥ç¬¬ä¸‰æ¬¡è¿å‡» */
 	bool bIsEnableThreeAttack;
-	/** ÊÇ·ñ½øÈëµÚËÄ´ÎÁ¬»÷ */
+	/** æ˜¯å¦è¿›å…¥ç¬¬å››æ¬¡è¿å‡» */
 	bool bIsEnableFourAttack;
-	/** ÊÇ·ñ½øÈëµÚÎå´ÎÁ¬»÷ */
+	/** æ˜¯å¦è¿›å…¥ç¬¬äº”æ¬¡è¿å‡» */
 	bool bIsEnableFiveAttack;
 public:
-	//¸üĞÂÈËÎïÒÆ¶¯ËÙ¶È
+	//æ›´æ–°äººç‰©ç§»åŠ¨é€Ÿåº¦
 	UFUNCTION(BlueprintCallable)
 		void UpdateSpeed();
-	//¿ªÊ¼²¥·ÅÃÉÌ«Ææ
+	//å¼€å§‹æ’­æ”¾è’™å¤ªå¥‡
 	UFUNCTION()
 		void AnimNotify_PlayStart(UAnimNotify* Notity);
-	//½áÊø²¥·ÅÃÉÌ«Ææ
+	//ç»“æŸæ’­æ”¾è’™å¤ªå¥‡
 	UFUNCTION()
 		void AnimNotify_PlayEnd(UAnimNotify* Notity);
-	//¿ªÊ¼¹¥»÷ÃÉÌ«Ææ
+	//å¼€å§‹æ”»å‡»è’™å¤ªå¥‡
 	UFUNCTION()
 		void AnimNotify_AttackStart(UAnimNotify* Notify);
-	//½áÊø¹¥»÷ÃÉÌ«Ææ
+	//ç»“æŸæ”»å‡»è’™å¤ªå¥‡
 	UFUNCTION()
 		void AnimNotify_AttackEnd(UAnimNotify* Notify);
-	//ÊÇ·ñ¿ÉÇĞ»»¶¯×÷
+	//æ˜¯å¦å¯åˆ‡æ¢åŠ¨ä½œ
 	UFUNCTION()
 		void AnimNotify_IsCanChangeAttack(UAnimNotify* Notity);
-	//ÖØÖÃÁ¬»÷×´Ì¬
+	//é‡ç½®è¿å‡»çŠ¶æ€
 	UFUNCTION()
 		void AnimNotify_ResetSerialAttack(UAnimNotify* Notity);
+	//æŠ€èƒ½1äº§ç”Ÿé€šçŸ¥
 	UFUNCTION()
-	////³õÊ¼»¯×´Ì¬
+		void AnimNotify_SkillBtn1(UAnimNotify* Notity);
+	//æ‰£é™¤é­”æ³•å€¼
+	UFUNCTION()
+		void MinusMP(float MP);
+	UFUNCTION()
+	////åˆå§‹åŒ–çŠ¶æ€
 	void InitState();
 };

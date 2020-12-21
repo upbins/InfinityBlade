@@ -17,9 +17,12 @@ void AAICharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	HPBar = Cast<UProgressBar>(WidgetComponent->GetUserWidgetObject()->GetWidgetFromName(TEXT("AI_HPBar")));
+	HPText = Cast<UTextBlock>(WidgetComponent->GetUserWidgetObject()->GetWidgetFromName(TEXT("AI_HPText")));
 	CurrentHP = TotalHP;
 	//更新UI
 	HPBar->SetPercent(CurrentHP / TotalHP);
+	FString HpString = FString::SanitizeFloat(CurrentHP) + "/" + FString::SanitizeFloat(TotalHP);
+	HPText->SetText(FText::FromString(HpString));
 }
 
 // Called every frame
@@ -35,5 +38,7 @@ float AAICharacter::TakeDamage(float Damage, struct FDamageEvent const& DamageEv
 	CurrentHP -= Damage;
 	//更新UI
 	HPBar->SetPercent(CurrentHP / TotalHP);
+	FString HpString = FString::SanitizeFloat(CurrentHP) + "/" + FString::SanitizeFloat(TotalHP);
+	HPText->SetText(FText::FromString(HpString));
 	return Damage;
 }

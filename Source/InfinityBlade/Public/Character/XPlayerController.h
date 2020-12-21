@@ -49,6 +49,8 @@ public:
 	UFUNCTION()
 		void NormalAttackBtnEevent();
 	UFUNCTION()
+		void SkillButton1Eevent();
+	UFUNCTION()
 		void InitState();
 	UFUNCTION()
 		void UpdateUI();

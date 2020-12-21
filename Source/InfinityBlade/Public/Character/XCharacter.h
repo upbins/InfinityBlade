@@ -10,6 +10,7 @@
 #include "Camera/CameraComponent.h"
 #include "Animation/AnimMontage.h"
 #include "Weapon/Weapon.h"
+#include "Character/Skill/IceStone.h"
 #include "XCharacter.generated.h"
 
 UCLASS()
@@ -38,6 +39,12 @@ public:
 	//连击动画蒙太奇
 	UPROPERTY(EditAnywhere, Category = "Montage")
 		UAnimMontage* SerialAttackMontage;
+	//skillbtn1子弹
+	UPROPERTY(EditAnywhere, Category = "SkillBtn1")
+		TSubclassOf<AIceStone> AIceStoneClass;
+	//Skillbtn1蒙太奇
+	UPROPERTY(EditAnywhere, Category = "Montage")
+		UAnimMontage* SkillBtn1Montage;
 public:
 	// Sets default values for this character's properties
 	//构造函数

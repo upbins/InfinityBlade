@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "Components/WidgetComponent.h"
 #include "Components/ProgressBar.h"
+#include "Components/TextBlock.h"
 #include "AICharacter.generated.h"
 
 UCLASS()
@@ -21,7 +22,7 @@ public:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	UPROPERTY(EditAnywhere, Category = "State")
-		float TotalHP;
+	float TotalHP;
 	//当前血量
 	float CurrentHP;
 	//是否死亡
@@ -29,6 +30,8 @@ public:
 	//血条
 	UPROPERTY()
 		UProgressBar* HPBar;
+	UPROPERTY()
+		UTextBlock* HPText;
 public:	
 	UPROPERTY(VisibleAnywhere)
 		UWidgetComponent* WidgetComponent;

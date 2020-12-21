@@ -1,77 +1,78 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "Character/XPlayerController.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 #include "Runtime/Engine/Classes/Kismet/KismetMathLibrary.h"
+#include "Character/Skill/IceStone.h"
 #include "AI/AICharacter.h"
-//ÓÎÏ·¿ªÊ¼µ÷ÓÃ·½·¨
+//æ¸¸æˆå¼€å§‹è°ƒç”¨æ–¹æ³•
 void AXPlayerController::BeginPlay()
 {
-	//ÉèÖÃÏÔÊ¾Êó±ê
+	//è®¾ç½®æ˜¾ç¤ºé¼ æ ‡
 	bShowMouseCursor = true;
 	
-	//³õÊ¼»¯Ó¢ĞÛ
+	//åˆå§‹åŒ–è‹±é›„
 	XCharacter = Cast<AXCharacter>(GetPawn());
-	//³õÊ¼»¯¶¯»­ÊµÀı
+	//åˆå§‹åŒ–åŠ¨ç”»å®ä¾‹
 	XAnimInstance = Cast<UXAnimInstance>(XCharacter->GetMesh()->GetAnimInstance());
-	//³õÊ¼»¯Íæ¼Ò×´Ì¬
+	//åˆå§‹åŒ–ç©å®¶çŠ¶æ€
 	XPlayerState = Cast<AXPlayerState>(this->PlayerState);
-	//³õÊ¼»¯Íæ¼Ò×´Ì¬
+	//åˆå§‹åŒ–ç©å®¶çŠ¶æ€
 	InitState();
 
-	//ÓÎÏ·½çÃæµÄ³õÊ¼»¯
+	//æ¸¸æˆç•Œé¢çš„åˆå§‹åŒ–
 	MainUserWidget = CreateWidget<UMainUserWidget>(GetGameInstance(), LoadClass<UMainUserWidget>(nullptr,TEXT("WidgetBlueprint'/Game/BluePrint/UI/BP_MainUserWidget.BP_MainUserWidget_C'")));
 	MainUserWidget->AddToViewport();
 	if (XCharacter->XWeaponClass)
 	{
-		//Éú³ÉÎäÆ÷¶ÔÏó
+		//ç”Ÿæˆæ­¦å™¨å¯¹è±¡
 		Weapon = GetWorld()->SpawnActor<AWeapon>(XCharacter->XWeaponClass);
-		//°ó¶¨¹æÔò
+		//ç»‘å®šè§„åˆ™
 		FAttachmentTransformRules AttachmentRules(EAttachmentRule::SnapToTarget, EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative, true);
-		//°ó¶¨ÎäÆ÷
+		//ç»‘å®šæ­¦å™¨
 		Weapon->AttachToComponent(XCharacter->GetMesh(), AttachmentRules, TEXT("hand_rSocket"));
-		//°ó¶¨ÎäÆ÷ÖØµşÊÂ¼ş
+		//ç»‘å®šæ­¦å™¨é‡å äº‹ä»¶
 		Weapon->CapsuleComponent->OnComponentBeginOverlap.AddDynamic(this, &AXPlayerController::WeaponOverlapDamage);
 	}
-	//³õÊ¼»¯°´Å¥µã»÷ÊÂ¼ş
+	//åˆå§‹åŒ–æŒ‰é’®ç‚¹å‡»äº‹ä»¶
 	InitBtnWidgetEvent();
 	UpdateUI();
 }
 
-////°ó¶¨ÊäÈë¿Ø¼ş
+////ç»‘å®šè¾“å…¥æ§ä»¶
 void AXPlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
-	////°ó¶¨ÊäÈë
+	////ç»‘å®šè¾“å…¥
 	InputComponent->BindAxis("MoveForward", this, &AXPlayerController::MoveForward);
 	InputComponent->BindAxis("MoveRight", this, &AXPlayerController::MoveRight);
 }
 
-//Ç°ºóÒÆ¶¯
+//å‰åç§»åŠ¨
 void AXPlayerController::MoveForward(float Speed)
 {
 
-	//»ñÈ¡¿ØÖÆÆ÷µÄ½Ç¶È
+	//è·å–æ§åˆ¶å™¨çš„è§’åº¦
 	FRotator _Rotation = XCharacter->GetControlRotation();//GetControlRotation();
-	//´´½¨Æ«º½½Ç
+	//åˆ›å»ºåèˆªè§’
 	FRotator YawRotation(0.f, _Rotation.Yaw, 0.f);
-	//»ñÈ¡ÒÆ¶¯·½Ïò
+	//è·å–ç§»åŠ¨æ–¹å‘
 	FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-	//ÔÚ¸Ã·½ÏòÔö¼ÓÎ»ÒÆ
+	//åœ¨è¯¥æ–¹å‘å¢åŠ ä½ç§»
 	XCharacter->AddMovementInput(Direction, Speed);
 }
 
-//×óÓÒÒÆ¶¯
+//å·¦å³ç§»åŠ¨
 void AXPlayerController::MoveRight(float Speed)
 {
-	////»ñÈ¡¿ØÖÆÆ÷µÄ½Ç¶È
+	////è·å–æ§åˆ¶å™¨çš„è§’åº¦
 	FRotator _Rotation = XCharacter->GetControlRotation();
-	//´´½¨Æ«º½½Ç
+	//åˆ›å»ºåèˆªè§’
 	FRotator YawRotation(0.f, _Rotation.Yaw, 0.f);
-	//»ñÈ¡ÒÆ¶¯·½Ïò
+	//è·å–ç§»åŠ¨æ–¹å‘
 	FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-	//ÔÚ¸Ã·½ÏòÔö¼ÓÎ»ÒÆ
+	//åœ¨è¯¥æ–¹å‘å¢åŠ ä½ç§»
 	XCharacter->AddMovementInput(Direction, Speed);
 }
 
@@ -81,44 +82,59 @@ void AXPlayerController::InitBtnWidgetEvent()
 	{
 		MainUserWidget->m_NormalAttackButton->OnClicked.AddDynamic(this, &AXPlayerController::NormalAttackBtnEevent);
 	}
+	if (MainUserWidget->m_SkillButton_1)
+	{
+		MainUserWidget->m_SkillButton_1->OnClicked.AddDynamic(this, &AXPlayerController::SkillButton1Eevent);
+	}
 }
 
-void AXPlayerController::NormalAttackBtnEevent()
+void AXPlayerController::SkillButton1Eevent()
 {
-	
-	//ÅĞ¶Ïµ±Ç°ÃÉÌ«ÆæÊÇ·ñÔÚ²¥·Å,Èç¹ûÕıÔÚ²¥·ÅÔòÖÕÖ¹
+	if (XAnimInstance->bIsPlayingAnimation) {
+		return;
+	}
+	if (XPlayerState->GetCurrentMP() >= 10.f) {
+		//è·å¾—è¿å‡»åŠ¨ç”»è’™å¤ªå¥‡
+		UAnimMontage * SkillBtn1Montage = XCharacter->SkillBtn1Montage;
+		XAnimInstance->Montage_Play(SkillBtn1Montage,1.f);
+	}
+}
+void AXPlayerController::NormalAttackBtnEevent()
+{	
+	//åˆ¤æ–­å½“å‰è’™å¤ªå¥‡æ˜¯å¦åœ¨æ’­æ”¾,å¦‚æœæ­£åœ¨æ’­æ”¾åˆ™ç»ˆæ­¢
 	if (XAnimInstance->bIsPlayingAnimation) 
 	{
 		return;
 	}
-	//»ñµÃÁ¬»÷¶¯»­ÃÉÌ«Ææ
+	//è·å¾—è¿å‡»åŠ¨ç”»è’™å¤ªå¥‡
 	UAnimMontage * SerialAttackMontage = XCharacter->SerialAttackMontage;
-	//»ñÈ¡µ±Ç°²¥·ÅµÄ½Ú
+	//è·å–å½“å‰æ’­æ”¾çš„èŠ‚
 	FName CurrentSection = XAnimInstance->Montage_GetCurrentSection(SerialAttackMontage);
 	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red,CurrentSection.ToString() + FString::SanitizeFloat(XAnimInstance->bIsCanChangeAttack));
+	LockAI();
 	if (CurrentSection.IsNone()) {
-		//Ä¬ÈÏ²¥·ÅµÚÒ»¸ö½Ú
+		//é»˜è®¤æ’­æ”¾ç¬¬ä¸€ä¸ªèŠ‚
 		XAnimInstance->Montage_Play(SerialAttackMontage);
 	}
 	if (XAnimInstance->bIsCanChangeAttack) {
 		if (CurrentSection.IsEqual(FName("FirstAttack")))
 		{
-			//²¥·ÅµÚ¶ş½Ú
+			//æ’­æ”¾ç¬¬äºŒèŠ‚
 			XAnimInstance->Montage_JumpToSection(FName("SecondAttack"), SerialAttackMontage);
 		}
 		else if (CurrentSection.IsEqual(FName("SecondAttack")))
 		{
-			//²¥·ÅµÚÈı½Ú
+			//æ’­æ”¾ç¬¬ä¸‰èŠ‚
 			XAnimInstance->Montage_JumpToSection(FName("ThreeAttack"), SerialAttackMontage);
 		}
 		else if (CurrentSection.IsEqual(FName("ThreeAttack")))
 		{
-			//²¥·ÅµÚËÄ½Ú
+			//æ’­æ”¾ç¬¬å››èŠ‚
 			XAnimInstance->Montage_JumpToSection(FName("FourAttack"), SerialAttackMontage);
 		}
 		else if (CurrentSection.IsEqual(FName("FourAttack")))
 		{
-			//²¥·ÅµÚÎå½Ú
+			//æ’­æ”¾ç¬¬äº”èŠ‚
 			XAnimInstance->Montage_JumpToSection(FName("FiveAttack"), SerialAttackMontage);
 		}
 	}
@@ -143,7 +159,7 @@ void AXPlayerController::UpdateUI()
 
 void AXPlayerController::WeaponOverlapDamage(UPrimitiveComponent* OverlapedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 BodyIndex, bool FromSweep, const FHitResult& HitResult)
 {
-	//ÊÇ·ñ´¦ÓÚ¹¥»÷×´Ì¬
+	//æ˜¯å¦å¤„äºæ”»å‡»çŠ¶æ€
 	if (XAnimInstance->bIsAttacking)
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red, "Overlap...");
@@ -151,48 +167,48 @@ void AXPlayerController::WeaponOverlapDamage(UPrimitiveComponent* OverlapedCompo
 	}
 }
 
-/** Ëø¶¨µĞÈË·½·¨ */
+/** é”å®šæ•Œäººæ–¹æ³• */
 void AXPlayerController::LockAI()
 {
-	/** »ñÈ¡×Ô¼ºµÄÎ»ÖÃ */
-	FVector Location = XCharacter->GetActorLocation();
-	/** »ñÈ¡ËùÓĞµÄµĞÈËÁĞ±í */
-	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AAICharacter::StaticClass(), AiArray);
-	/** ÅĞ¶ÏµĞÈËÊıÁ¿ */
-	int AiNum = AiArray.Num();
-	if (AiNum > 0)
-	{
-		/** »ñÈ¡Ä¬ÈÏ×î½ü¾àÀë */
-		float MinDistance = FVector::Dist(Location, AiArray[0]->GetActorLocation());
-		/** ¾àÀëÍæ¼Ò×î½üµÄAI */
-		AActor* MinActor = AiArray[0];
-		/** ±éÀúËùÓĞµĞÈË */
-		for (int i = 0; i < AiNum; i++)
+		/** è·å–è‡ªå·±çš„ä½ç½® */
+		FVector Location = XCharacter->GetActorLocation();
+		/** è·å–æ‰€æœ‰çš„æ•Œäººåˆ—è¡¨ */
+		UGameplayStatics::GetAllActorsOfClass(GetWorld(), AAICharacter::StaticClass(), AiArray);
+		/** åˆ¤æ–­æ•Œäººæ•°é‡ */
+		int AiNum = AiArray.Num();
+		if (AiNum > 0)
 		{
-			/** ÅĞ¶ÏµĞÈËÊÇ·ñÒÑ¾­ËÀÍö */
-			if (Cast<AAICharacter>(AiArray[i])->bIsDead)
+			/** è·å–é»˜è®¤æœ€è¿‘è·ç¦» */
+			float MinDistance = FVector::Dist(Location, AiArray[0]->GetActorLocation());
+			/** è·ç¦»ç©å®¶æœ€è¿‘çš„AI */
+			AActor* MinActor = AiArray[0];
+			/** éå†æ‰€æœ‰æ•Œäºº */
+			for (int i = 0; i < AiNum; i++)
 			{
-				continue;
+				/** åˆ¤æ–­æ•Œäººæ˜¯å¦å·²ç»æ­»äº¡ */
+				if (Cast<AAICharacter>(AiArray[i])->bIsDead)
+				{
+					continue;
+				}
+				/** è·å–è·ç¦» */
+				float TmpDistance = FVector::Dist(Location, AiArray[i]->GetActorLocation());
+				/** åˆ¤æ–­æœ€è¿‘è·ç¦» */
+				if (MinDistance >= TmpDistance)
+				{
+					MinDistance = TmpDistance;
+					MinActor = AiArray[i];
+				}
 			}
-			/** »ñÈ¡¾àÀë */
-			float TmpDistance = FVector::Dist(Location, AiArray[i]->GetActorLocation());
-			/** ÅĞ¶Ï×î½ü¾àÀë */
-			if (MinDistance >= TmpDistance)
+			/** åˆ¤æ–­è·ç¦»æ˜¯å¦è·ç¦»ç©å®¶è¶³å¤Ÿçš„è¿‘ */
+			if (MinDistance <= 400)
 			{
-				MinDistance = TmpDistance;
-				MinActor = AiArray[i];
+				/** è®¾ç½®Rotationåªå·¦å³æ—‹è½¬ */
+				FRotator Rotation = UKismetMathLibrary::FindLookAtRotation(Location, MinActor->GetActorLocation());
+				/** ä¿®æ”¹Rotation */
+				Rotation.Pitch = XCharacter->GetCapsuleComponent()->GetComponentRotation().Pitch;
+				Rotation.Roll = XCharacter->GetCapsuleComponent()->GetComponentRotation().Roll;
+				/** è®¾ç½®ç©å®¶èƒ¶å›Šä½“æœå‘ */
+				XCharacter->GetCapsuleComponent()->SetRelativeRotation(Rotation);
 			}
-		}
-		/** ÅĞ¶Ï¾àÀëÊÇ·ñ¾àÀëÍæ¼Ò×ã¹»µÄ½ü */
-		if (MinDistance <= 400)
-		{
-			/** ÉèÖÃRotationÖ»×óÓÒĞı×ª */
-			FRotator Rotation = UKismetMathLibrary::FindLookAtRotation(Location, MinActor->GetActorLocation());
-			/** ĞŞ¸ÄRotation */
-			Rotation.Pitch = XCharacter->GetCapsuleComponent()->GetComponentRotation().Pitch;
-			Rotation.Roll = XCharacter->GetCapsuleComponent()->GetComponentRotation().Roll;
-			/** ÉèÖÃÍæ¼Ò½ºÄÒÌå³¯Ïò */
-			XCharacter->GetCapsuleComponent()->SetRelativeRotation(Rotation);
-		}
 	}
 }
