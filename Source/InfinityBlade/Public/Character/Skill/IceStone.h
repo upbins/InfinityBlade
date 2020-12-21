@@ -20,11 +20,14 @@ class INFINITYBLADE_API AIceStone : public AActor
 	UPROPERTY(VisibleAnywhere)
 		UCapsuleComponent* CapsuleComponent;
 	//自动移动组件
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere)
 		UProjectileMovementComponent* ProjectileMovementComponent;
 	//爆炸特效
 	UPROPERTY(EditAnywhere, Category = "Particle")
 		UParticleSystem* BoomPartical;
+	//爆炸音效
+	UPROPERTY(EditAnywhere, Category = "Sound")
+		USoundBase* BoomSound;
 
 public:	
 	// Sets default values for this actor's properties

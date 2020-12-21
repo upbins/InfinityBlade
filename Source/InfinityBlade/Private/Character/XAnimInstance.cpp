@@ -79,7 +79,7 @@ void UXAnimInstance::AnimNotify_SkillBtn1(UAnimNotify* Notity)
 	AIceStone *IceStone = GetWorld()->SpawnActor<AIceStone>(XCharacter->AIceStoneClass, Location, Rotation);
 	//发射子弹
 	IceStone->OnShoot(Rotation.Vector());
-	MinusMP(10.0f);
+	//MinusMP(10.0f);
 }
 
 //减少魔法值

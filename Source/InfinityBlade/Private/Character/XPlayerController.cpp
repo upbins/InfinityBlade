@@ -96,6 +96,7 @@ void AXPlayerController::SkillButton1Eevent()
 	if (XPlayerState->GetCurrentMP() >= 10.f) {
 		//获得连击动画蒙太奇
 		UAnimMontage * SkillBtn1Montage = XCharacter->SkillBtn1Montage;
+		LockAI();
 		XAnimInstance->Montage_Play(SkillBtn1Montage,1.f);
 	}
 }
@@ -200,7 +201,7 @@ void AXPlayerController::LockAI()
 				}
 			}
 			/** 判断距离是否距离玩家足够的近 */
-			if (MinDistance <= 400)
+			if (MinDistance <= 4000)
 			{
 				/** 设置Rotation只左右旋转 */
 				FRotator Rotation = UKismetMathLibrary::FindLookAtRotation(Location, MinActor->GetActorLocation());
