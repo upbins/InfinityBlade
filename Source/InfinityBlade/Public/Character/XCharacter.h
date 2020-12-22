@@ -11,6 +11,7 @@
 #include "Animation/AnimMontage.h"
 #include "Weapon/Weapon.h"
 #include "Character/Skill/IceStone.h"
+#include "Character/Skill/XBlade.h"
 #include "XCharacter.generated.h"
 
 UCLASS()
@@ -51,6 +52,11 @@ public:
 	//Skillbtn3蒙太奇
 	UPROPERTY(EditAnywhere, Category = "Montage")
 		UAnimMontage* SkillBtn3Montage;
+	UPROPERTY(EditAnywhere, Category = "SkillBtn4")
+		TSubclassOf<AXBlade> XBladeClass;
+	//SkillBtn4蒙太奇
+	UPROPERTY(EditAnywhere, Category = "Montage")
+		UAnimMontage* SkillBtn4Montage;
 public:
 	// Sets default values for this character's properties
 	//构造函数

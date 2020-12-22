@@ -21,6 +21,8 @@ private:
 	float m_CurrentMP;
 	//µ±«∞—™¡ø
 	float m_CurrentHP;
+	//∂ÓÕ‚…À∫¶
+	float m_ExtendDamge = 0.f;
 public:
 
 	//Mp
@@ -44,4 +46,10 @@ public:
 		return m_AttackDamage;
 	}
 
+	//…Ë÷√…À∫¶
+	FORCEINLINE void SetExtendDamage(float ExtendDamge) { this->m_ExtendDamge = ExtendDamge; };
+	//∑µªÿ…À∫¶
+	FORCEINLINE float GetExtendDamage() {
+		return m_ExtendDamge;
+	}
 };

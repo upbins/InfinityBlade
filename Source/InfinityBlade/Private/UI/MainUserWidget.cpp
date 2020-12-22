@@ -17,5 +17,8 @@ bool UMainUserWidget::Initialize()
 	m_ProgressBar_MP = Cast<UProgressBar>(GetWidgetFromName(TEXT("ProgressBar_MP")));
 	m_ProgressBar_Engery = Cast<UProgressBar>(GetWidgetFromName(TEXT("ProgressBar_Engery")));
 	m_ProgressBar_HP = Cast<UProgressBar>(GetWidgetFromName(TEXT("ProgressBar_HP")));
+	//m_Image->SetBrushFromAsset("Texture2D'/Game/Texture/character/T_Equip_HP.T_Equip_HP'");
+	//m_Image->SetBrushFromTexture(Texture);
+	m_SkillButton_1->AddChild(m_Image);
 	return true;
 }

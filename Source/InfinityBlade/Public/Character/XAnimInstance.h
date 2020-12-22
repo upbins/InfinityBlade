@@ -6,6 +6,7 @@
 #include "Animation/AnimInstance.h"
 #include "Character/XPlayerState.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
+#include "Character/Skill/XBlade.h"
 #include "XAnimInstance.generated.h"
 
 /**
@@ -31,14 +32,10 @@ public:
 	int IntCurAttackIndex = 0;
 	//基本攻击
 	float BaseAttack;
-	/** 是否进入第二次连击 */
-	bool bIsEnableSecondAttack;
-	/** 是否进入第三次连击 */
-	bool bIsEnableThreeAttack;
-	/** 是否进入第四次连击 */
-	bool bIsEnableFourAttack;
-	/** 是否进入第五次连击 */
-	bool bIsEnableFiveAttack;
+	UPROPERTY()
+		FTimerHandle TimerHandle;
+	UPROPERTY()
+		AXBlade* XBlade = nullptr;
 public:
 	//更新人物移动速度
 	UFUNCTION(BlueprintCallable)
@@ -67,8 +64,15 @@ public:
 	//技能2产生通知
 	UFUNCTION()
 		void AnimNotify_SkillBtn2(UAnimNotify* Notity);
+	//技能3产生通知
 	UFUNCTION()
 		void AnimNotify_SkillBtn3(UAnimNotify* Notity);
+	//技能4产生通知
+	UFUNCTION()
+		void AnimNotify_SkillBtn4(UAnimNotify* Notity);
+	//定时器
+	UFUNCTION()
+		void TimerCallback();
 	//扣除魔法值
 	UFUNCTION()
 		void MinusMP(float MP);

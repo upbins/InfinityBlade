@@ -49,13 +49,13 @@ public:
 	UFUNCTION()
 		void NormalAttackBtnEevent();
 	UFUNCTION()
-		void SkillButton1Eevent();
+		void SkillButton1Event();
 	UFUNCTION()
-		void SkillButton2Eevent();
+		void SkillButton2Event();
 	UFUNCTION()
-		void SkillButton3Eevent();
+		void SkillButton3Event();
 	UFUNCTION()
-		void SkillButton4Eevent();
+		void SkillButton4Event();
 	UFUNCTION()
 		void InitState();
 	UFUNCTION()

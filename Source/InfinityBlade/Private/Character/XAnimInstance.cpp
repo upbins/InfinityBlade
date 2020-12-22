@@ -114,8 +114,56 @@ void UXAnimInstance::AnimNotify_SkillBtn3(UAnimNotify* Notify)
 	/** 产生伤害 */
 	TArray<AActor*> IgnoreActors;
 	IgnoreActors.Add(TryGetPawnOwner());
+	float CurDamage = XPlayerState->GetExtendDamage() + XPlayerState->GetAttackDamage();
 	UGameplayStatics::ApplyRadialDamage(GetWorld(), 50.f, TryGetPawnOwner()->GetActorLocation(), 500.f, nullptr, IgnoreActors, TryGetPawnOwner(), TryGetPawnOwner()->GetController(), true, ECC_Visibility);
 }
+
+//技能4产生通知
+
+void UXAnimInstance::AnimNotify_SkillBtn4(UAnimNotify* Notify)
+{
+	/** 初始化状态 */
+	InitState();
+	//获取角色
+	AXCharacter* XCharacter = Cast<AXCharacter>(TryGetPawnOwner());
+	if (XCharacter->XBladeClass && XBlade == nullptr)
+	{
+		//生成武器对象
+		XBlade = GetWorld()->SpawnActor<AXBlade>(XCharacter->XBladeClass);
+		//绑定规则
+		FAttachmentTransformRules AttachmentRules(EAttachmentRule::SnapToTarget, EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative, true);
+		//绑定武器
+		XBlade->AttachToComponent(XCharacter->GetMesh(), AttachmentRules, TEXT("hand_rSocket"));
+		/** 扣除魔法值 */
+		MinusMP(40.f);
+		//增伤
+		if (XPlayerState != nullptr) 
+		{
+			XPlayerState->SetExtendDamage(60);
+		}
+		/** 开启定时器 */
+		XCharacter->GetWorldTimerManager().SetTimer(TimerHandle, this, &UXAnimInstance::TimerCallback, 10.f, false);
+	}
+}
+
+/** 定时器回调方法 */
+void UXAnimInstance::TimerCallback()
+{
+	/** 初始化状态 */
+	InitState();
+	GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red, "Timer...");
+	if (XPlayerState != nullptr)
+	{
+		XPlayerState->SetExtendDamage(0);
+	}
+	/** 获取英雄角色 */
+	AXCharacter* XCharacter = Cast<AXCharacter>(TryGetPawnOwner());
+	XBlade->Destroyed();
+	XBlade = nullptr;
+	/** 清除定时器 */
+	XCharacter->GetWorldTimerManager().ClearTimer(TimerHandle);
+}
+
 
 //减少魔法值
 void UXAnimInstance::MinusMP(float MP)

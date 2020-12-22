@@ -84,23 +84,23 @@ void AXPlayerController::InitBtnWidgetEvent()
 	}
 	if (MainUserWidget->m_SkillButton_1)
 	{
-		MainUserWidget->m_SkillButton_1->OnClicked.AddDynamic(this, &AXPlayerController::SkillButton1Eevent);
+		MainUserWidget->m_SkillButton_1->OnClicked.AddDynamic(this, &AXPlayerController::SkillButton1Event);
 	}
 	if (MainUserWidget->m_SkillButton_2) 
 	{
-		MainUserWidget->m_SkillButton_2->OnClicked.AddDynamic(this, &AXPlayerController::SkillButton2Eevent);
+		MainUserWidget->m_SkillButton_2->OnClicked.AddDynamic(this, &AXPlayerController::SkillButton2Event);
 	}
 	if (MainUserWidget->m_SkillButton_3)
 	{
-		MainUserWidget->m_SkillButton_3->OnClicked.AddDynamic(this, &AXPlayerController::SkillButton3Eevent);
+		MainUserWidget->m_SkillButton_3->OnClicked.AddDynamic(this, &AXPlayerController::SkillButton3Event);
 	}
 	if (MainUserWidget->m_SkillButton_4)
 	{
-		MainUserWidget->m_SkillButton_4->OnClicked.AddDynamic(this, &AXPlayerController::SkillButton4Eevent);
+		MainUserWidget->m_SkillButton_4->OnClicked.AddDynamic(this, &AXPlayerController::SkillButton4Event);
 	}
 }
 
-void AXPlayerController::SkillButton1Eevent()
+void AXPlayerController::SkillButton1Event()
 {
 	if (XAnimInstance->bIsPlayingAnimation) {
 		return;
@@ -113,7 +113,7 @@ void AXPlayerController::SkillButton1Eevent()
 	}
 }
 
-void AXPlayerController::SkillButton2Eevent()
+void AXPlayerController::SkillButton2Event()
 {
 	if (XAnimInstance->bIsPlayingAnimation) {
 		return;
@@ -124,20 +124,26 @@ void AXPlayerController::SkillButton2Eevent()
 	}
 }
 
-void AXPlayerController::SkillButton3Eevent()
+void AXPlayerController::SkillButton3Event()
 {
 	if (XAnimInstance->bIsPlayingAnimation) {
 		return;
 	}
-	if (XPlayerState->GetCurrentMP() >= 20.f) {
+	if (XPlayerState->GetCurrentMP() >= 10.f) {
 		UAnimMontage * SkillBtn3Montage = XCharacter->SkillBtn3Montage;
 		XAnimInstance->Montage_Play(SkillBtn3Montage, 1.f);
 	}
 }
 
-void AXPlayerController::SkillButton4Eevent()
+void AXPlayerController::SkillButton4Event()
 {
-
+	if (XAnimInstance->bIsPlayingAnimation) {
+		return;
+	}
+	if (XPlayerState->GetCurrentMP() >= 10.f) {
+		UAnimMontage * SkillBtn4Montage = XCharacter->SkillBtn4Montage;
+		XAnimInstance->Montage_Play(SkillBtn4Montage, 1.f);
+	}
 } 
 void AXPlayerController::NormalAttackBtnEevent()
 {	
@@ -204,7 +210,7 @@ void AXPlayerController::WeaponOverlapDamage(UPrimitiveComponent* OverlapedCompo
 	if (XAnimInstance->bIsAttacking)
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red, "Overlap...");
-		UGameplayStatics::ApplyDamage(OtherActor, XPlayerState->GetAttackDamage(), this, XCharacter, nullptr);
+		UGameplayStatics::ApplyDamage(OtherActor, XPlayerState->GetAttackDamage() + XPlayerState->GetExtendDamage(), this, XCharacter, nullptr);
 	}
 }
 
