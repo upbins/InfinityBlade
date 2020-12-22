@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Animation/AnimInstance.h"
 #include "Character/XPlayerState.h"
+#include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 #include "XAnimInstance.generated.h"
 
 /**
@@ -63,9 +64,17 @@ public:
 	//技能1产生通知
 	UFUNCTION()
 		void AnimNotify_SkillBtn1(UAnimNotify* Notity);
+	//技能2产生通知
+	UFUNCTION()
+		void AnimNotify_SkillBtn2(UAnimNotify* Notity);
+	UFUNCTION()
+		void AnimNotify_SkillBtn3(UAnimNotify* Notity);
 	//扣除魔法值
 	UFUNCTION()
 		void MinusMP(float MP);
+	//更新UI
+	UFUNCTION()
+		void UpdateMPUI();
 	UFUNCTION()
 	////初始化状态
 	void InitState();

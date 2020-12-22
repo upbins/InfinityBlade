@@ -45,6 +45,12 @@ public:
 	//Skillbtn1蒙太奇
 	UPROPERTY(EditAnywhere, Category = "Montage")
 		UAnimMontage* SkillBtn1Montage;
+	//Skillbtn2蒙太奇
+	UPROPERTY(EditAnywhere, Category = "Montage")
+		UAnimMontage* SkillBtn2Montage;
+	//Skillbtn3蒙太奇
+	UPROPERTY(EditAnywhere, Category = "Montage")
+		UAnimMontage* SkillBtn3Montage;
 public:
 	// Sets default values for this character's properties
 	//构造函数

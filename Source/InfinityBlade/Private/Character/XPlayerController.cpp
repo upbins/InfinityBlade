@@ -86,6 +86,18 @@ void AXPlayerController::InitBtnWidgetEvent()
 	{
 		MainUserWidget->m_SkillButton_1->OnClicked.AddDynamic(this, &AXPlayerController::SkillButton1Eevent);
 	}
+	if (MainUserWidget->m_SkillButton_2) 
+	{
+		MainUserWidget->m_SkillButton_2->OnClicked.AddDynamic(this, &AXPlayerController::SkillButton2Eevent);
+	}
+	if (MainUserWidget->m_SkillButton_3)
+	{
+		MainUserWidget->m_SkillButton_3->OnClicked.AddDynamic(this, &AXPlayerController::SkillButton3Eevent);
+	}
+	if (MainUserWidget->m_SkillButton_4)
+	{
+		MainUserWidget->m_SkillButton_4->OnClicked.AddDynamic(this, &AXPlayerController::SkillButton4Eevent);
+	}
 }
 
 void AXPlayerController::SkillButton1Eevent()
@@ -100,8 +112,37 @@ void AXPlayerController::SkillButton1Eevent()
 		XAnimInstance->Montage_Play(SkillBtn1Montage,1.f);
 	}
 }
+
+void AXPlayerController::SkillButton2Eevent()
+{
+	if (XAnimInstance->bIsPlayingAnimation) {
+		return;
+	}
+	if (XPlayerState->GetCurrentMP() >= 10.f) {
+		UAnimMontage * SkillBtn2Montage = XCharacter->SkillBtn2Montage;
+		XAnimInstance->Montage_Play(SkillBtn2Montage, 1.f);
+	}
+}
+
+void AXPlayerController::SkillButton3Eevent()
+{
+	if (XAnimInstance->bIsPlayingAnimation) {
+		return;
+	}
+	if (XPlayerState->GetCurrentMP() >= 20.f) {
+		UAnimMontage * SkillBtn3Montage = XCharacter->SkillBtn3Montage;
+		XAnimInstance->Montage_Play(SkillBtn3Montage, 1.f);
+	}
+}
+
+void AXPlayerController::SkillButton4Eevent()
+{
+
+} 
 void AXPlayerController::NormalAttackBtnEevent()
 {	
+
+	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red,FString::SanitizeFloat(XAnimInstance->bIsCanChangeAttack)+FString::SanitizeFloat(XAnimInstance->bIsPlayingAnimation));
 	//判断当前蒙太奇是否在播放,如果正在播放则终止
 	if (XAnimInstance->bIsPlayingAnimation) 
 	{
@@ -111,7 +152,6 @@ void AXPlayerController::NormalAttackBtnEevent()
 	UAnimMontage * SerialAttackMontage = XCharacter->SerialAttackMontage;
 	//获取当前播放的节
 	FName CurrentSection = XAnimInstance->Montage_GetCurrentSection(SerialAttackMontage);
-	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red,CurrentSection.ToString() + FString::SanitizeFloat(XAnimInstance->bIsCanChangeAttack));
 	LockAI();
 	if (CurrentSection.IsNone()) {
 		//默认播放第一个节

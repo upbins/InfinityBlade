@@ -43,4 +43,5 @@ public:
 	FORCEINLINE float GetAttackDamage() { 
 		return m_AttackDamage;
 	}
+
 };

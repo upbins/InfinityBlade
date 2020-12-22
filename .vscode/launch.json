@@ -1,0 +1,128 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "InfinityBlade (Debug)",
+			"request": "launch",
+			"preLaunchTask": "InfinityBlade Win64 Debug Build",
+			"program": "F:\\WorkSpace\\UnrealProject\\InfinityBlade\\Binaries\\Win64\\UE4-Win64-Debug.exe",
+			"args": [
+			],
+			"cwd": "D:\\Program Files\\Epic Games\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "D:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "InfinityBlade (DebugGame)",
+			"request": "launch",
+			"preLaunchTask": "InfinityBlade Win64 DebugGame Build",
+			"program": "F:\\WorkSpace\\UnrealProject\\InfinityBlade\\Binaries\\Win64\\UE4-Win64-DebugGame.exe",
+			"args": [
+			],
+			"cwd": "D:\\Program Files\\Epic Games\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "D:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "InfinityBlade (Development)",
+			"request": "launch",
+			"preLaunchTask": "InfinityBlade Win64 Development Build",
+			"program": "F:\\WorkSpace\\UnrealProject\\InfinityBlade\\Binaries\\Win64\\UE4.exe",
+			"args": [
+			],
+			"cwd": "D:\\Program Files\\Epic Games\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "D:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "InfinityBlade (Shipping)",
+			"request": "launch",
+			"preLaunchTask": "InfinityBlade Win64 Shipping Build",
+			"program": "F:\\WorkSpace\\UnrealProject\\InfinityBlade\\Binaries\\Win64\\UE4-Win64-Shipping.exe",
+			"args": [
+			],
+			"cwd": "D:\\Program Files\\Epic Games\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "D:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "InfinityBlade (Test)",
+			"request": "launch",
+			"preLaunchTask": "InfinityBlade Win64 Test Build",
+			"program": "F:\\WorkSpace\\UnrealProject\\InfinityBlade\\Binaries\\Win64\\UE4-Win64-Test.exe",
+			"args": [
+			],
+			"cwd": "D:\\Program Files\\Epic Games\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "D:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "InfinityBladeEditor (Debug)",
+			"request": "launch",
+			"preLaunchTask": "InfinityBladeEditor Win64 Debug Build",
+			"program": "D:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Binaries\\Win64\\UE4Editor-Win64-Debug.exe",
+			"args": [
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject"
+			],
+			"cwd": "D:\\Program Files\\Epic Games\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "D:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "InfinityBladeEditor (DebugGame)",
+			"request": "launch",
+			"preLaunchTask": "InfinityBladeEditor Win64 DebugGame Build",
+			"program": "D:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Binaries\\Win64\\UE4Editor-Win64-DebugGame.exe",
+			"args": [
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject"
+			],
+			"cwd": "D:\\Program Files\\Epic Games\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "D:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "InfinityBladeEditor (Development)",
+			"request": "launch",
+			"preLaunchTask": "InfinityBladeEditor Win64 Development Build",
+			"program": "D:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Binaries\\Win64\\UE4Editor.exe",
+			"args": [
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject"
+			],
+			"cwd": "D:\\Program Files\\Epic Games\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "D:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "Generate Project Files",
+			"type": "clr",
+			"request": "launch",
+			"program": "D:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Binaries\\DotNET\\UnrealBuildTool.exe",
+			"console": "externalTerminal",
+			"args": [
+				"-projectfiles",
+				"-vscode",
+				"-project=\"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject\"",
+				"-game",
+				"-engine"
+			],
+			"internalConsoleOptions": "openOnSessionStart",
+			"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+		}
+	]
+}

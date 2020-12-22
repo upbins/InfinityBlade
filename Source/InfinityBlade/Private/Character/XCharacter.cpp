@@ -20,9 +20,9 @@ AXCharacter::AXCharacter()
 	CameraBoom->SetupAttachment(RootComponent);
 	CameraBoom->bUsePawnControlRotation = true;
 	//创建一个摄像机 绑定到CameraBoom下，不受控制旋转的影响 受CameraBoom旋转影响  
-	/*FollowCamera = CreateDefaultSubobject<UCameraComponent>("CameraComponent");
-	FollowCamera->SetupAttachment(CameraBoom,USpringArmComponent::SocketName);
-	FollowCamera->bUsePawnControlRotation = false;*/
+	FollowCamera = CreateDefaultSubobject<UCameraComponent>("CameraComponent");
+	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
+	FollowCamera->bUsePawnControlRotation = true;
 }
 
 // Called when the game starts or when spawned

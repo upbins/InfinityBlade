@@ -11,7 +11,8 @@ AIceStone::AIceStone()
 
 	CapsuleComponent = CreateDefaultSubobject<UCapsuleComponent>(TEXT("CapsuleComponent"));
 	CapsuleComponent->OnComponentBeginOverlap.AddDynamic(this, &AIceStone::OnOverlap);
-	CapsuleComponent->SetupAttachment(RootComponent);
+	//CapsuleComponent->SetupAttachment(RootComponent);
+	SetRootComponent(CapsuleComponent);
 	ParticleSystemComponent = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("ParticleSystemComponent"));
 	ParticleSystemComponent->SetupAttachment(CapsuleComponent);
 	ProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovementComponent"));

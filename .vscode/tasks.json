@@ -1,0 +1,977 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "InfinityBlade Win32 Debug Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"Win32",
+				"Debug",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win32 Debug Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"Win32",
+				"Debug",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"InfinityBlade Win32 Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win32 Debug Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"InfinityBlade",
+				"Win32",
+				"Debug",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win32 DebugGame Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"Win32",
+				"DebugGame",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win32 DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"Win32",
+				"DebugGame",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"InfinityBlade Win32 DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win32 DebugGame Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"InfinityBlade",
+				"Win32",
+				"DebugGame",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win32 Development Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"Win32",
+				"Development",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win32 Development Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"Win32",
+				"Development",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"InfinityBlade Win32 Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win32 Development Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"InfinityBlade",
+				"Win32",
+				"Development",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win32 Shipping Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"Win32",
+				"Shipping",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win32 Shipping Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"Win32",
+				"Shipping",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"InfinityBlade Win32 Shipping Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win32 Shipping Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"InfinityBlade",
+				"Win32",
+				"Shipping",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win32 Test Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"Win32",
+				"Test",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win32 Test Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"Win32",
+				"Test",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"InfinityBlade Win32 Test Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win32 Test Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"InfinityBlade",
+				"Win32",
+				"Test",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win64 Debug Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"Win64",
+				"Debug",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win64 Debug Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"Win64",
+				"Debug",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"InfinityBlade Win64 Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win64 Debug Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"InfinityBlade",
+				"Win64",
+				"Debug",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win64 DebugGame Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"Win64",
+				"DebugGame",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win64 DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"Win64",
+				"DebugGame",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"InfinityBlade Win64 DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win64 DebugGame Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"InfinityBlade",
+				"Win64",
+				"DebugGame",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win64 Development Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"Win64",
+				"Development",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win64 Development Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"Win64",
+				"Development",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"InfinityBlade Win64 Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win64 Development Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"InfinityBlade",
+				"Win64",
+				"Development",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win64 Shipping Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"Win64",
+				"Shipping",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win64 Shipping Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"Win64",
+				"Shipping",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"InfinityBlade Win64 Shipping Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win64 Shipping Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"InfinityBlade",
+				"Win64",
+				"Shipping",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win64 Test Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"Win64",
+				"Test",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win64 Test Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"Win64",
+				"Test",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"InfinityBlade Win64 Test Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade Win64 Test Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"InfinityBlade",
+				"Win64",
+				"Test",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade IOS Debug Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"IOS",
+				"Debug",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade IOS Debug Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"IOS",
+				"Debug",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"InfinityBlade IOS Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade IOS Debug Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"InfinityBlade",
+				"IOS",
+				"Debug",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade IOS DebugGame Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"IOS",
+				"DebugGame",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade IOS DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"IOS",
+				"DebugGame",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"InfinityBlade IOS DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade IOS DebugGame Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"InfinityBlade",
+				"IOS",
+				"DebugGame",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade IOS Development Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"IOS",
+				"Development",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade IOS Development Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"IOS",
+				"Development",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"InfinityBlade IOS Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade IOS Development Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"InfinityBlade",
+				"IOS",
+				"Development",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade IOS Shipping Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"IOS",
+				"Shipping",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade IOS Shipping Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"IOS",
+				"Shipping",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"InfinityBlade IOS Shipping Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade IOS Shipping Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"InfinityBlade",
+				"IOS",
+				"Shipping",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade IOS Test Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"IOS",
+				"Test",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade IOS Test Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBlade",
+				"IOS",
+				"Test",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"InfinityBlade IOS Test Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBlade IOS Test Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"InfinityBlade",
+				"IOS",
+				"Test",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBladeEditor Win64 Debug Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBladeEditor",
+				"Win64",
+				"Debug",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBladeEditor Win64 Debug Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBladeEditor",
+				"Win64",
+				"Debug",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"InfinityBladeEditor Win64 Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBladeEditor Win64 Debug Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"InfinityBladeEditor",
+				"Win64",
+				"Debug",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBladeEditor Win64 DebugGame Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBladeEditor",
+				"Win64",
+				"DebugGame",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBladeEditor Win64 DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBladeEditor",
+				"Win64",
+				"DebugGame",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"InfinityBladeEditor Win64 DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBladeEditor Win64 DebugGame Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"InfinityBladeEditor",
+				"Win64",
+				"DebugGame",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBladeEditor Win64 Development Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBladeEditor",
+				"Win64",
+				"Development",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBladeEditor Win64 Development Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"InfinityBladeEditor",
+				"Win64",
+				"Development",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"InfinityBladeEditor Win64 Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "InfinityBladeEditor Win64 Development Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"InfinityBladeEditor",
+				"Win64",
+				"Development",
+				"F:\\WorkSpace\\UnrealProject\\InfinityBlade\\InfinityBlade.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		}
+	]
+}

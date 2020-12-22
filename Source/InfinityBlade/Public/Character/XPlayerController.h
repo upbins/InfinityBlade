@@ -51,6 +51,12 @@ public:
 	UFUNCTION()
 		void SkillButton1Eevent();
 	UFUNCTION()
+		void SkillButton2Eevent();
+	UFUNCTION()
+		void SkillButton3Eevent();
+	UFUNCTION()
+		void SkillButton4Eevent();
+	UFUNCTION()
 		void InitState();
 	UFUNCTION()
 		void UpdateUI();
