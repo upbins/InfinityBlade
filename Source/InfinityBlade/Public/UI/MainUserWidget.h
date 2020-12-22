@@ -33,8 +33,8 @@ public:
 		UProgressBar *m_ProgressBar_Engery;
 	UPROPERTY()
 		UProgressBar *m_ProgressBar_HP;
-	UPROPERTY()
-		UImage *m_Image;
+	//UPROPERTY()
+		//UImage *m_Image;
 	//UPROPERTY(EditAnywhere)
 	//	UTexture2D *Texture;
 public:
