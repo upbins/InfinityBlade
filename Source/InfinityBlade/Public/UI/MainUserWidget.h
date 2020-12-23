@@ -33,10 +33,6 @@ public:
 		UProgressBar *m_ProgressBar_Engery;
 	UPROPERTY()
 		UProgressBar *m_ProgressBar_HP;
-	//UPROPERTY()
-		//UImage *m_Image;
-	//UPROPERTY(EditAnywhere)
-	//	UTexture2D *Texture;
 public:
 	//控件创建完成后初始化方法
 	virtual bool Initialize() override;

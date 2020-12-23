@@ -158,7 +158,9 @@ void UXAnimInstance::TimerCallback()
 	}
 	/** 获取英雄角色 */
 	AXCharacter* XCharacter = Cast<AXCharacter>(TryGetPawnOwner());
-	XBlade->Destroyed();
+	FDetachmentTransformRules DetachmentTransformRule(EDetachmentRule::KeepRelative,true);
+	XBlade->DetachFromActor(DetachmentTransformRule);
+	XBlade->Destroy();
 	XBlade = nullptr;
 	/** 清除定时器 */
 	XCharacter->GetWorldTimerManager().ClearTimer(TimerHandle);

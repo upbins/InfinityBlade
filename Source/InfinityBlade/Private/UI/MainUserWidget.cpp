@@ -17,14 +17,14 @@ bool UMainUserWidget::Initialize()
 	m_ProgressBar_MP = Cast<UProgressBar>(GetWidgetFromName(TEXT("ProgressBar_MP")));
 	m_ProgressBar_Engery = Cast<UProgressBar>(GetWidgetFromName(TEXT("ProgressBar_Engery")));
 	m_ProgressBar_HP = Cast<UProgressBar>(GetWidgetFromName(TEXT("ProgressBar_HP")));
-	UImage* m_Image = NewObject<UImage>(UImage::StaticClass());
-	m_Image->SetVisibility(ESlateVisibility::Visible);
-	m_Image->SetBrushFromTexture(LoadObject<UTexture2D>(NULL, TEXT("Texture2D'/Game/Texture/Common/T_Btn_Gray.T_Btn_Gray'")));
-	//m_NormalAttackButton->AddChild(m_Image);
-	UPanelWidget* rootPanel = (UPanelWidget*)this->GetRootWidget();
-	rootPanel->AddChild(m_Image);
-	UCanvasPanelSlot* canvasPanelSlot = (UCanvasPanelSlot*)m_Image->Slot;
-	auto slot = m_Image->Slot;
-	canvasPanelSlot->SetPosition(FVector2D(640, 360));
+	//UImage* m_Image = NewObject<UImage>(UImage::StaticClass());
+	//m_Image->SetVisibility(ESlateVisibility::Visible);
+	//m_Image->SetBrushFromTexture(LoadObject<UTexture2D>(NULL, TEXT("Texture2D'/Game/Texture/Common/T_Btn_Gray.T_Btn_Gray'")));
+	////m_NormalAttackButton->AddChild(m_Image);
+	//UPanelWidget* rootPanel = (UPanelWidget*)this->GetRootWidget();
+	//rootPanel->AddChild(m_Image);
+	//UCanvasPanelSlot* canvasPanelSlot = (UCanvasPanelSlot*)m_Image->Slot;
+	//auto slot = m_Image->Slot;
+	//canvasPanelSlot->SetPosition(FVector2D(640, 360));
 	return true;
 }

@@ -147,8 +147,7 @@ void AXPlayerController::SkillButton4Event()
 } 
 void AXPlayerController::NormalAttackBtnEevent()
 {	
-
-	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red,FString::SanitizeFloat(XAnimInstance->bIsCanChangeAttack)+FString::SanitizeFloat(XAnimInstance->bIsPlayingAnimation));
+	//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red,FString::SanitizeFloat(XAnimInstance->bIsCanChangeAttack)+FString::SanitizeFloat(XAnimInstance->bIsPlayingAnimation));
 	//判断当前蒙太奇是否在播放,如果正在播放则终止
 	if (XAnimInstance->bIsPlayingAnimation) 
 	{
@@ -209,7 +208,7 @@ void AXPlayerController::WeaponOverlapDamage(UPrimitiveComponent* OverlapedCompo
 	//是否处于攻击状态
 	if (XAnimInstance->bIsAttacking)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red, "Overlap...");
+		GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red, "AXPlayerController-Overlap...");
 		UGameplayStatics::ApplyDamage(OtherActor, XPlayerState->GetAttackDamage() + XPlayerState->GetExtendDamage(), this, XCharacter, nullptr);
 	}
 }

@@ -7,6 +7,8 @@
 #include "Components/WidgetComponent.h"
 #include "Components/ProgressBar.h"
 #include "Components/TextBlock.h"
+#include "BehaviorTree/BehaviorTree.h"
+#include "Weapon/Weapon.h"
 #include "AICharacter.generated.h"
 
 UCLASS()
@@ -32,6 +34,20 @@ public:
 		UProgressBar* HPBar;
 	UPROPERTY()
 		UTextBlock* HPText;
+	UPROPERTY(EditAnywhere, Category = "BehaviorTree")
+		UBehaviorTree* BehaviorTree;
+	//ÎäÆ÷°ó¶¨
+	UPROPERTY(EditAnywhere, Category = "Weapon")
+		TSubclassOf<AWeapon> AIWeaponClass;
+	/** ¹¥»÷¶¯»­ÃÉÌ«ÆæÊý×é */
+	UPROPERTY(EditAnywhere, Category = "Montage")
+		TArray<UAnimMontage*> AttackMontages;
+	/** ÊÜÉË¶¯»­ÃÉÌ«Ææ */
+	UPROPERTY(EditAnywhere, Category = "Montage")
+		UAnimMontage* DamageMontage;
+	/** ËÀÍö¶¯»­ÃÉÌ«Ææ */
+	UPROPERTY(EditAnywhere, Category = "Montage")
+		UAnimMontage* DeathMontage;
 public:	
 	UPROPERTY(VisibleAnywhere)
 		UWidgetComponent* WidgetComponent;
