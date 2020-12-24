@@ -45,9 +45,15 @@ public:
 	/**  ‹…À∂Øª≠√…Ã´∆Ê */
 	UPROPERTY(EditAnywhere, Category = "Montage")
 		UAnimMontage* DamageMontage;
+		//TArray<UAnimMontage*> DamageMontage;
+	UPROPERTY(EditAnywhere, Category = " DamageMontageSectionName")
+		TArray<FString> DamageSectionNameList;
 	/** À¿Õˆ∂Øª≠√…Ã´∆Ê */
 	UPROPERTY(EditAnywhere, Category = "Montage")
 		UAnimMontage* DeathMontage;
+		//TArray<UAnimMontage*> DeathMontage;
+	FString CurSectionNameString = "";
+	UAnimMontage * CurDamageMontage;
 public:	
 	UPROPERTY(VisibleAnywhere)
 		UWidgetComponent* WidgetComponent;

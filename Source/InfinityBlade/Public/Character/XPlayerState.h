@@ -26,10 +26,10 @@ private:
 public:
 
 	//Mp
-	FORCEINLINE void SetCurrentMP(float CurrentMP) { this->m_CurrentHP = CurrentMP; };
+	FORCEINLINE void SetCurrentMP(float CurrentMP) { this->m_CurrentMP = CurrentMP; };
 	//Mp
 	FORCEINLINE float GetCurrentMP() {
-		return m_CurrentHP;
+		return m_CurrentMP;
 	};
 
 	//Hp

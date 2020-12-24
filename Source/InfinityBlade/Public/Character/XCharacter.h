@@ -57,13 +57,17 @@ public:
 	//SkillBtn4蒙太奇
 	UPROPERTY(EditAnywhere, Category = "Montage")
 		UAnimMontage* SkillBtn4Montage;
+	UPROPERTY(EditAnywhere, Category = "Montage")
+		UAnimMontage* SkillBtn5Montage;
 public:
 	// Sets default values for this character's properties
 	//构造函数
 	AXCharacter();
 
-protected:
+public:
 	// Called when the game starts or when spawned
 	//游戏开始调用的方法
 	virtual void BeginPlay() override;
+	//重写伤害的方法
+	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 };

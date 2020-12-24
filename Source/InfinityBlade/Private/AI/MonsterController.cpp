@@ -42,6 +42,6 @@ void AMonsterController::WeaponOverlapDamage(UPrimitiveComponent* OverlapedCompo
 	GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red, "AI Damage...");
 	if (AnimInstance->IsPlayAnimation)
 	{
-		UGameplayStatics::ApplyDamage(OtherActor, 20.f, this, Monster, nullptr);
+		UGameplayStatics::ApplyDamage(OtherActor, 5.0f, this, Monster, nullptr);
 	}
 }

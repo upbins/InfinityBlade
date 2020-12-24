@@ -2,6 +2,8 @@
 
 
 #include "Character/XCharacter.h"
+#include "Character/XPlayerController.h"
+#include "Character/XPlayerState.h"
 // Sets default values
 AXCharacter::AXCharacter()
 {
@@ -29,5 +31,15 @@ AXCharacter::AXCharacter()
 void AXCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+}
+
+//更新玩家血量ai
+float AXCharacter::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+	AXPlayerController* m_Controller = Cast<AXPlayerController>(GetController());
+	AXPlayerState* m_PlayerState = m_Controller->XPlayerState;
+	m_PlayerState->SetCurrentHP(m_PlayerState->GetCurrentHP() - Damage);
+	m_Controller->UpdateUI();
+	return Damage;
 }
 

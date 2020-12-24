@@ -34,11 +34,55 @@ void AAICharacter::Tick(float DeltaTime)
 
 float AAICharacter::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
+	if (DamageCauser == this)
+	{
+		return 0.f;
+	}
 	//当前血量减少
 	CurrentHP -= Damage;
 	//更新UI
 	HPBar->SetPercent(CurrentHP / TotalHP);
 	FString HpString = FString::SanitizeFloat(CurrentHP) + "/" + FString::SanitizeFloat(TotalHP);
 	HPText->SetText(FText::FromString(HpString));
+	//随机播放一个动作
+	UAnimInstance*  XAnimInstance = GetMesh()->GetAnimInstance();
+
+	GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red, CurSectionNameString + FString::SanitizeFloat(CurrentHP));
+	if (CurrentHP <= 0) 
+	{ 
+		//播放死亡动画
+		if (CurSectionNameString != "")
+		{
+			CurDamageMontage = this->DeathMontage;
+			FName CurrentSection = XAnimInstance->Montage_GetCurrentSection(CurDamageMontage);
+			if (CurrentSection.IsNone()) {
+				//默认播放第一个节
+				XAnimInstance->Montage_Play(CurDamageMontage);
+			}
+			else {
+				//播放第第几个节
+				XAnimInstance->Montage_JumpToSection(FName(CurSectionNameString), CurDamageMontage);
+			}
+		}
+	
+	}
+	else
+	{
+		/** 获取随机数 */
+		uint8 RandomNum = FMath::FloorToInt(FMath::RandRange(0.f, this->DamageSectionNameList.Num()*1.f));
+		CurSectionNameString = this->DamageSectionNameList[RandomNum];
+		//获得受击动画蒙太奇
+		CurDamageMontage = this->DamageMontage;
+		//获取当前播放的节
+		FName CurrentSection = XAnimInstance->Montage_GetCurrentSection(CurDamageMontage);
+		if (CurrentSection.IsNone()) {
+			//默认播放第一个节
+			XAnimInstance->Montage_Play(CurDamageMontage);
+		}
+		else {
+			//播放第第几个节
+			XAnimInstance->Montage_JumpToSection(FName(CurSectionNameString), CurDamageMontage);
+		}
+	}
 	return Damage;
 }
