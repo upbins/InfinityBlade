@@ -10,7 +10,7 @@
 AMainGameMode::AMainGameMode()
 {
 	//找到资源里面的Charater蓝图类
-	ConstructorHelpers::FClassFinder<ACharacter> CharacterFinder(TEXT("/Game/BluePrint/Character/BP_XCharacter"));
+	ConstructorHelpers::FClassFinder<ACharacter> CharacterFinder(TEXT("/Game/Character/BluePrint/Character/BP_XCharacter"));
 	DefaultPawnClass = CharacterFinder.Class;
 	//设置PlayerController
 	PlayerControllerClass = AXPlayerController::StaticClass();

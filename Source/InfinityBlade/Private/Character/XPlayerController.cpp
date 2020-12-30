@@ -20,10 +20,10 @@ void AXPlayerController::BeginPlay()
 	XPlayerState = Cast<AXPlayerState>(this->PlayerState);
 	//初始化玩家状态
 	InitState();
-
 	//游戏界面的初始化
-	MainUserWidget = CreateWidget<UMainUserWidget>(GetGameInstance(), LoadClass<UMainUserWidget>(nullptr,TEXT("WidgetBlueprint'/Game/BluePrint/UI/BP_MainUserWidget.BP_MainUserWidget_C'")));
+	MainUserWidget = CreateWidget<UMainUserWidget>(GetGameInstance(), LoadClass<UMainUserWidget>(nullptr,TEXT("WidgetBlueprint'/Game/Character/BluePrint/UI/BP_MainWidget.BP_MainWidget_C'")));
 	MainUserWidget->AddToViewport();
+	
 	if (XCharacter->XWeaponClass)
 	{
 		//生成武器对象
